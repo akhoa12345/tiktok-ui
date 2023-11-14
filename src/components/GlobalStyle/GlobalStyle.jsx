@@ -8,6 +8,10 @@ const GlobalStyle = createGlobalStyle`
     --primary: #fe2c55
   }
 
+  * {
+    box-sizing: border-box;
+  }
+
   html {
     font-size: 65.5%
   }
