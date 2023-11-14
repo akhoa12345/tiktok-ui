@@ -5,7 +5,11 @@ const GlobalStyle = createGlobalStyle`
   ${normalize}
 
   :root {
-    --primary: #fe2c55
+    --primary: #fe2c55;
+
+    // Default layout 
+    --default-layout-header-height: 60px;
+    --default-layout-width: 1150px;
   }
 
   * {

@@ -1,5 +1,11 @@
+import styled from 'styled-components';
+
+const SidebarStyles = styled.aside`
+    width: 356px;
+`;
+
 function Sidebar() {
-    return ( <h1>Sidebar</h1> );
+    return <SidebarStyles>Sidebar</SidebarStyles>;
 }
 
 export default Sidebar;
