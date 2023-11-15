@@ -1,8 +1,63 @@
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import images from '../../../../assets/images/';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch, faCircleXmark, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import Tippy from '@tippyjs/react/headless';
+
+import images from '../../../../assets/images/';
+import { Wrapper as PopperWrapper } from '../../../Popper/';
+import AccountItem from '../../../AccountItem';
+
+function Header() {
+    const [searchResult, setSearchResult] = useState([]);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setSearchResult([1, 2, 3]);
+        }, 0);
+    }, []);
+
+    return (
+        <HeaderStyle>
+            <div className="inner">
+                <div className="logo">
+                    <img src={images.logo} alt="Tiktok" />
+                </div>
+                <div>
+                <Tippy
+                    interactive
+                    visible={searchResult.length > 0}
+                    render={(attrs) => (
+                        <div className="search-result" tabIndex="-1" {...attrs}>
+                            <PopperWrapper>
+                                <h4 className="search-title">Accounts</h4>
+                                <AccountItem></AccountItem>
+                                <AccountItem></AccountItem>
+                                <AccountItem></AccountItem>
+                            </PopperWrapper>
+                        </div>
+                    )}
+                >
+                    <div className="search">
+                        <input type="text" placeholder="Search accounts and videos" spellCheck={false} />
+                        <button className="clear">
+                            <FontAwesomeIcon icon={faCircleXmark} style={{ color: '#b6bdc8' }} />
+                        </button>
+                        <FontAwesomeIcon className="loading" icon={faCircleNotch} style={{ color: '#b6bdc8' }} />
+                        <button className="search-btn">
+                            <FontAwesomeIcon icon={faMagnifyingGlass} />
+                        </button>
+                    </div>
+                </Tippy>
+                </div>
+                <div className="action"></div>
+            </div>
+        </HeaderStyle>
+    );
+}
+
+export default Header;
 
 const HeaderStyle = styled.header`
     --search-border-radius: 92px;
@@ -26,10 +81,15 @@ const HeaderStyle = styled.header`
         .logo {
         }
 
+        .search,
+        .search-result {
+            width: 361px;
+        }
+
         .search {
             position: relative;
-            width: 361px;
             height: var(--search-height);
+            width: 361px;
             padding-left: 16px;
             display: flex;
             background-color: rgba(22, 24, 35, 0.06);
@@ -89,30 +149,13 @@ const HeaderStyle = styled.header`
                 }
             }
         }
+
+        .search-title {
+            margin: 0px;
+            padding: 5px 12px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: rgba(22, 24, 35, 0.5);
+        }
     }
 `;
-
-function Header() {
-    return (
-        <HeaderStyle>
-            <div className="inner">
-                <div className="logo">
-                    <img src={images.logo} alt="Tiktok" />
-                </div>
-                <div className="search">
-                    <input type="text" placeholder="Search accounts and videos" spellCheck={false} />
-                    <button className="clear">
-                        <FontAwesomeIcon icon={faCircleXmark} style={{ color: '#b6bdc8' }} />
-                    </button>
-                    <FontAwesomeIcon className="loading" icon={faCircleNotch} style={{ color: '#b6bdc8' }} />
-                    <button className="search-btn">
-                        <FontAwesomeIcon icon={faMagnifyingGlass} />
-                    </button>
-                </div>
-                <div className="action"></div>
-            </div>
-        </HeaderStyle>
-    );
-}
-
-export default Header;
