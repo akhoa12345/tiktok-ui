@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
   :root {
     --primary: #fe2c55;
     --black: #000;
+    --white: #fff;
     --text-color: #333;
 
     // Default layout 

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch, faCircleXmark, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react/headless';
 
+import Button from '../../../Button';
 import images from '../../../../assets/images/';
 import { Wrapper as PopperWrapper } from '../../../Popper/';
 import AccountItem from '../../../AccountItem';
@@ -14,7 +15,7 @@ function Header() {
 
     useEffect(() => {
         setTimeout(() => {
-            setSearchResult([1, 2, 3]);
+            setSearchResult([]);
         }, 0);
     }, []);
 
@@ -25,33 +26,38 @@ function Header() {
                     <img src={images.logo} alt="Tiktok" />
                 </div>
                 <div>
-                <Tippy
-                    interactive
-                    visible={searchResult.length > 0}
-                    render={(attrs) => (
-                        <div className="search-result" tabIndex="-1" {...attrs}>
-                            <PopperWrapper>
-                                <h4 className="search-title">Accounts</h4>
-                                <AccountItem></AccountItem>
-                                <AccountItem></AccountItem>
-                                <AccountItem></AccountItem>
-                            </PopperWrapper>
+                    <Tippy
+                        interactive
+                        visible={searchResult.length > 0}
+                        render={(attrs) => (
+                            <div className="search-result" tabIndex="-1" {...attrs}>
+                                <PopperWrapper>
+                                    <h4 className="search-title">Accounts</h4>
+                                    <AccountItem></AccountItem>
+                                    <AccountItem></AccountItem>
+                                    <AccountItem></AccountItem>
+                                </PopperWrapper>
+                            </div>
+                        )}
+                    >
+                        <div className="search">
+                            <input type="text" placeholder="Search accounts and videos" spellCheck={false} />
+                            <button className="clear">
+                                <FontAwesomeIcon icon={faCircleXmark} style={{ color: '#b6bdc8' }} />
+                            </button>
+                            <FontAwesomeIcon className="loading" icon={faCircleNotch} style={{ color: '#b6bdc8' }} />
+                            <button className="search-btn">
+                                <FontAwesomeIcon icon={faMagnifyingGlass} />
+                            </button>
                         </div>
-                    )}
-                >
-                    <div className="search">
-                        <input type="text" placeholder="Search accounts and videos" spellCheck={false} />
-                        <button className="clear">
-                            <FontAwesomeIcon icon={faCircleXmark} style={{ color: '#b6bdc8' }} />
-                        </button>
-                        <FontAwesomeIcon className="loading" icon={faCircleNotch} style={{ color: '#b6bdc8' }} />
-                        <button className="search-btn">
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        </button>
-                    </div>
-                </Tippy>
+                    </Tippy>
                 </div>
-                <div className="action"></div>
+                <div className="action">
+                    <Button text>Upload</Button>
+                    <Button primary>
+                        Log in
+                    </Button>
+                </div>
             </div>
         </HeaderStyle>
     );
@@ -156,6 +162,9 @@ const HeaderStyle = styled.header`
             font-size: 1.4rem;
             font-weight: 600;
             color: rgba(22, 24, 35, 0.5);
+        }
+
+        .action {
         }
     }
 `;
