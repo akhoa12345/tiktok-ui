@@ -34,10 +34,39 @@ function Button({
 
     if (to) {
         props.to = to;
-        Comp = Link;
+        Comp = styled(Link)`
+            display: inline-flex;
+            align-items: center;
+            justify-content: flex-start;
+            min-width: 100px;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 1.6rem;
+            font-weight: 700;
+            cursor: pointer;
+            background-color: var(--white);
+            border: 1px solid transparent;
+            user-select: none;
+
+            & + & {
+                margin-left: 8px;
+            }
+
+            .icon + .title,
+            .title + .icon {
+                color: black;
+                margin-left: 8px;
+            }
+
+            .icon {
+                width: 24px;
+                display: inline-block;
+                text-align: center;
+            }
+        `;
     } else if (href) {
         props.href = href;
-        Comp = 'a';
+        Comp = styled.a``;
     }
 
     return (
@@ -53,7 +82,7 @@ function Button({
             {...props}
         >
             {leftIcon && <span className="icon">{leftIcon}</span>}
-            <span className='title'>{children}</span>
+            <span className="title">{children}</span>
             {rightIcon && <span className="icon">{rightIcon}</span>}
         </Comp>
     );
@@ -152,5 +181,10 @@ const ButtonStyle = styled.button`
     .icon + .title, .title + .icon {
         margin-left: 8px;
     }
-    
+
+    .icon {
+        width: 24px;
+        display: inline-block;
+        text-align: center;
+    }
 `;

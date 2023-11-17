@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-function Wrapper({ children }) {
-    return <WrapperStyle>{children}</WrapperStyle>;
+function Wrapper({ className, children }) {
+    return <WrapperStyle className={className}>{children}</WrapperStyle>;
 }
 
 export default Wrapper;
