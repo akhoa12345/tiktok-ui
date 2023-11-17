@@ -47,7 +47,7 @@ function Button({
             background-color: var(--white);
             border: 1px solid transparent;
             user-select: none;
-
+            
             & + & {
                 margin-left: 8px;
             }
@@ -105,7 +105,7 @@ const ButtonStyle = styled.button`
     user-select: none;
 
     & + & {
-        margin-left: 8px;
+        /* margin-left: 8px; */
     }
 
     ${(props) =>

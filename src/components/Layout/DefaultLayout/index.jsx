@@ -10,6 +10,7 @@ const DefaultLayoutStyle = styled.div`
 
     .container {
         width: var(--default-layout-width);
+        padding: 0px var(--default-layout-horizontal-spacer);
         display: flex;
 
         .content {

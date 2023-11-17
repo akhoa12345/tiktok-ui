@@ -2,9 +2,9 @@ import styled from 'styled-components';
 
 import Button from '../../Button';
 
-function MenuItem({ data }) {
+function MenuItem({ data, onClick }) {
     return (
-        <MenuItemStyle leftIcon={data.icon} to={data.to}>
+        <MenuItemStyle leftIcon={data.icon} to={data.to} onClick={onClick}>
             {data.title}
         </MenuItemStyle>
     );
