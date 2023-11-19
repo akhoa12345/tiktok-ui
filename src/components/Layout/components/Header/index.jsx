@@ -10,7 +10,6 @@ import {
     faEarthAsia,
     faCircleQuestion,
     faKeyboard,
-    faCloudUpload,
     faUser,
     faCoins,
     faGear,
@@ -25,6 +24,8 @@ import images from '../../../../assets/images/';
 import { Wrapper as PopperWrapper } from '../../../Popper/';
 import AccountItem from '../../../AccountItem';
 import Menu from '../../../Popper/Menu';
+import { UploadIcon } from '../../../Icons';
+import Image from '../../../Image';
 
 const MENU_ITEMS = [
     {
@@ -141,7 +142,7 @@ function Header() {
                         <>
                             <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
                                 <button className="action-btn">
-                                    <FontAwesomeIcon icon={faCloudUpload} />
+                                    <UploadIcon/>
                                 </button>
                             </Tippy>
                         </>
@@ -154,7 +155,7 @@ function Header() {
 
                     <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
                         {currentUser ? (
-                            <img
+                            <Image
                                 className="user-avatar" 
                                 src="https://ps.w.org/user-avatar-reloaded/assets/icon-128x128.png?rev=2540745"
                                 alt="Nguyen Van A"

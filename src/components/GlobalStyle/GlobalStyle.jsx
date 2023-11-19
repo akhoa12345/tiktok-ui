@@ -25,12 +25,13 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'IBM Plex Sans', sans-serif;
+    font-family: 'ProximaNova', sans-serif;
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
     color: var(--text-color);
 
+    // Custom Tippy tooltip
     .tippy-box {
       border-radius: 8px;
       font-weight:600;
@@ -61,6 +62,31 @@ const GlobalStyle = createGlobalStyle`
     color: var(--text-color);
     text-decoration: none;
   }
+
+  // Fonts embedded 
+  @font-face {
+    font-family: ProximaNova;
+    src: url('/assets/fonts/Proxima-Nova-Regular.woff2');
+    font-weight: 400;
+}
+
+  @font-face {
+    font-family: ProximaNova;
+    src: url('/assets/fonts/ProximaNova-Semibold.woff2');
+    font-weight: 600;
+}
+
+  @font-face {
+    font-family: ProximaNova;
+    src: url('/assets/fonts/Proxima-Nova-Bold.woff');
+    font-weight: 700;
+}
+
+  @font-face {
+    font-family: SofiaPro;
+    src: url('/assets/fonts/sofiapro-bold.woff');
+    font-weight: 700;
+}
 `;
 
 export default GlobalStyle;

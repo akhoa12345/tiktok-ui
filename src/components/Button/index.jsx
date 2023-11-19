@@ -41,7 +41,7 @@ function Button({
             min-width: 100px;
             padding: 8px 16px;
             border-radius: 4px;
-            font-size: 1.6rem;
+            font-size: 1.4rem;
             font-weight: 700;
             cursor: pointer;
             background-color: var(--white);
@@ -97,7 +97,7 @@ const ButtonStyle = styled.button`
     min-width: 100px;
     padding: 9px 16px;
     border-radius: 4px;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-weight: 700;
     cursor: pointer;
     background-color: var(--white);
