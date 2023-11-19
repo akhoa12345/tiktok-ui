@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import Button from '../../Button';
 
 function MenuItem({ data, onClick }) {
+    console.log(data.separate);
     return (
-        <MenuItemStyle leftIcon={data.icon} to={data.to} onClick={onClick}>
+        <MenuItemStyle leftIcon={data.icon} separate={data.separate} to={data.to} onClick={onClick}>
             {data.title}
         </MenuItemStyle>
     );
@@ -17,6 +18,9 @@ const MenuItemStyle = styled(Button)`
     justify-content: flex-start;
     border-radius: 0px;
     padding: 11px 16px;
+    line-height: 1.8rem;
+
+    border-top: ${(props) => (props.separate ? '1px solid rgba(22,24, 35, 0.12) !important' : 'none')};
 
     &:hover {
         background-color: rgba(22, 24, 35, 0.03);

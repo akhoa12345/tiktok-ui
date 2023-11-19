@@ -6,9 +6,9 @@ import MenuItem from './MenuItem.jsx';
 import Header from './Header.jsx';
 import { useState } from 'react';
 
-const defaultFn =()=>{}
+const defaultFn = () => {};
 
-function Menu({ items = [], onChange=defaultFn, children }) {
+function Menu({ items = [], onChange = defaultFn, children }) {
     const [history, setHistory] = useState([{ data: items }]);
     const current = history[history.length - 1];
 
@@ -33,9 +33,9 @@ function Menu({ items = [], onChange=defaultFn, children }) {
 
     return (
         <MenuStyle
-            visible
             interactive
             delay={[0, 700]}
+            offset={[12, 8]}
             placement="bottom-end"
             content={
                 <div className="menu-list">
@@ -54,6 +54,7 @@ function Menu({ items = [], onChange=defaultFn, children }) {
                     </PopperWrapper>
                 </div>
             }
+            onHidden={() => setHistory((prev) => prev.slice(0, 1))}
         >
             {children}
         </MenuStyle>
