@@ -2,10 +2,12 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
+import Image from '../Image';
+
 function AccountItem() {
     return (
         <AccountItemStyle>
-            <img
+            <Image
                 src="https://st.nettruyenus.com/data/comics/150/dung-hong-them-muon-nhan-sac-cua-de-de-x-8348.jpg"
                 alt=""
                 className="avatar"
