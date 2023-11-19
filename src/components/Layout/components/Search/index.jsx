@@ -12,14 +12,31 @@ function Search() {
     const [searchValue, setSearchValue] = useState('');
     const [searchResult, setSearchResult] = useState([]);
     const [showResult, setShowResult] = useState(true);
+    const [loading, setLoading] = useState(false);
 
     const inputRef = useRef();
 
     useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([1]);
-        }, 0);
-    }, []);
+        if (!searchValue.trim()) {
+            setSearchResult([])
+            return;
+        }
+
+        setLoading(true);
+
+        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+            .then((response) => {
+                return response.json();
+            })
+            .then((response) => {
+                setSearchResult(response.data);
+                setLoading(false)
+            })
+            .catch((err) => {
+                setLoading(false);
+                console.log(err)
+            });
+    }, [searchValue]);
 
     const handleClear = () => {
         setSearchValue('');
@@ -41,9 +58,9 @@ function Search() {
                     <div className="search-result" tabIndex="-1" {...attrs}>
                         <PopperWrapper>
                             <h4 className="search-title">Accounts</h4>
-                            <AccountItem />
-                            <AccountItem />
-                            <AccountItem />
+                            {searchResult.map((result) => {
+                                return <AccountItem key={result.id} data={result} />;
+                            })}
                         </PopperWrapper>
                     </div>
                 )}
@@ -58,12 +75,12 @@ function Search() {
                         onChange={(e) => setSearchValue(e.target.value)}
                         onFocus={() => setShowResult(true)}
                     />
-                    {!!searchValue && (
+                    {!!searchValue && !loading && (
                         <button className="clear" onClick={handleClear}>
                             <FontAwesomeIcon icon={faCircleXmark} style={{ color: '#b6bdc8' }} />
                         </button>
                     )}
-                    {/* <FontAwesomeIcon className="loading" icon={faCircleNotch} style={{ color: '#b6bdc8' }} /> */}
+                    {loading && <FontAwesomeIcon className="loading" icon={faCircleNotch} style={{ color: '#b6bdc8' }} />}
                     <button className="search-btn">
                         <SearchIcon />
                     </button>
@@ -123,6 +140,19 @@ const SearchStyle = styled.div`
             right: calc(var(--search-button-width) + 16px);
             top: 50%;
             transform: translateY(-50%);
+        }
+
+        .loading {
+            animation: spinner 1s linear infinite;
+        }
+
+        @keyframes spinner {
+            from {
+                transform: translateY(-50%) rotate(0)
+            } 
+            to {
+                transform: translateY(-50%) rotate(360deg)
+            }
         }
 
         .search-btn {

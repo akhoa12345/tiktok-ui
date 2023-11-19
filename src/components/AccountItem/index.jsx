@@ -3,21 +3,22 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
 
 import Image from '../Image';
+import { Link } from 'react-router-dom';
 
-function AccountItem() {
+function AccountItem({data}) {
     return (
-        <AccountItemStyle>
+        <AccountItemStyle to={`/@${data.nickname}`}>
             <Image
-                src="https://st.nettruyenus.com/data/comics/150/dung-hong-them-muon-nhan-sac-cua-de-de-x-8348.jpg"
-                alt=""
+                src={data.avatar}
+                alt={data.full_name}
                 className="avatar"
             />
             <div className="info">
                 <h4 className="name">
-                    <span>Nguyen Van B</span>
-                    <FontAwesomeIcon className="check" icon={faCheckCircle} />
+                    <span>{data.nickname}</span>
+                    {data.tick && <FontAwesomeIcon className="check" icon={faCheckCircle} />}
                 </h4>
-                <span className="username">nguyenvana</span>
+                <span className="username">{data.full_name}</span>
             </div>
         </AccountItemStyle>
     );
@@ -25,7 +26,7 @@ function AccountItem() {
 
 export default AccountItem;
 
-const AccountItemStyle = styled.div`
+const AccountItemStyle = styled(Link)`
     display: flex;
     align-items: center;
     padding: 6px 16px;
