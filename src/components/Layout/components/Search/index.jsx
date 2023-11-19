@@ -7,6 +7,7 @@ import HeadlessTippy from '@tippyjs/react/headless';
 import { Wrapper as PopperWrapper } from '../../../Popper/';
 import AccountItem from '../../../AccountItem';
 import { SearchIcon } from '../../../Icons';
+import { useDebounce } from '../../../../hooks';
 
 function Search() {
     const [searchValue, setSearchValue] = useState('');
@@ -14,29 +15,31 @@ function Search() {
     const [showResult, setShowResult] = useState(true);
     const [loading, setLoading] = useState(false);
 
+    const debounced = useDebounce(searchValue, 500);
+
     const inputRef = useRef();
 
     useEffect(() => {
-        if (!searchValue.trim()) {
-            setSearchResult([])
+        if (!debounced.trim()) {
+            setSearchResult([]);
             return;
         }
 
         setLoading(true);
 
-        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+        fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounced)}&type=less`)
             .then((response) => {
                 return response.json();
             })
             .then((response) => {
                 setSearchResult(response.data);
-                setLoading(false)
+                setLoading(false);
             })
             .catch((err) => {
                 setLoading(false);
-                console.log(err)
+                console.log(err);
             });
-    }, [searchValue]);
+    }, [debounced]);
 
     const handleClear = () => {
         setSearchValue('');
@@ -80,7 +83,9 @@ function Search() {
                             <FontAwesomeIcon icon={faCircleXmark} style={{ color: '#b6bdc8' }} />
                         </button>
                     )}
-                    {loading && <FontAwesomeIcon className="loading" icon={faCircleNotch} style={{ color: '#b6bdc8' }} />}
+                    {loading && (
+                        <FontAwesomeIcon className="loading" icon={faCircleNotch} style={{ color: '#b6bdc8' }} />
+                    )}
                     <button className="search-btn">
                         <SearchIcon />
                     </button>
@@ -148,10 +153,10 @@ const SearchStyle = styled.div`
 
         @keyframes spinner {
             from {
-                transform: translateY(-50%) rotate(0)
-            } 
+                transform: translateY(-50%) rotate(0);
+            }
             to {
-                transform: translateY(-50%) rotate(360deg)
+                transform: translateY(-50%) rotate(360deg);
             }
         }
 
