@@ -14,13 +14,13 @@ import {
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
-import Button from '../../../Button';
-import images from '../../../../assets/images/';
-import Menu from '../../../Popper/Menu';
-import { UploadIcon, MessageIcon, InboxIcon } from '../../../Icons';
-import Image from '../../../Image';
+import Button from '../../../components/Button';
+import images from '../../../assets/images';
+import Menu from '../../../components/Popper/Menu';
+import { UploadIcon, MessageIcon, InboxIcon } from '../../../components/Icons';
+import Image from '../../../components/Image';
 import Search from '../Search';
-import routesConfig from '../../../../config/routes';
+import config from '../../../config';
 
 const MENU_ITEMS = [
     {
@@ -94,7 +94,7 @@ function Header() {
     return (
         <HeaderStyle>
             <div className="inner">
-                <Link to={routesConfig.home} className="logo-link">
+                <Link to={config.routes.home} className="logo-link">
                     <img src={images.logo} alt="Tiktok" />
                 </Link>
 

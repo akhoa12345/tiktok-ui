@@ -5,11 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import HeadlessTippy from '@tippyjs/react/headless';
 
-import * as searchServices from '../../../../apiServices/searchServices';
-import { Wrapper as PopperWrapper } from '../../../Popper/';
-import AccountItem from '../../../AccountItem';
-import { SearchIcon } from '../../../Icons';
-import { useDebounce } from '../../../../hooks';
+import * as searchService from '../../../services/searchService';
+import { Wrapper as PopperWrapper } from '../../../components/Popper';
+import AccountItem from '../../../components/AccountItem';
+import { SearchIcon } from '../../../components/Icons';
+import { useDebounce } from '../../../hooks';
 
 function Search() {
     const [searchValue, setSearchValue] = useState('');
@@ -30,7 +30,7 @@ function Search() {
         const fetchApi = async () => {
             setLoading(true);
 
-            const result = await searchServices.search(debounced);
+            const result = await searchService.search(debounced);
             setSearchResult(result);
 
             setLoading(false);
@@ -91,7 +91,7 @@ function Search() {
                     {loading && (
                         <FontAwesomeIcon className="loading" icon={faCircleNotch} style={{ color: '#b6bdc8' }} />
                     )}
-                    <button className="search-btn" onMouseDown={e=>e.pre}>
+                    <button className="search-btn" onMouseDown={(e) => e.pre}>
                         <SearchIcon />
                     </button>
                 </div>
