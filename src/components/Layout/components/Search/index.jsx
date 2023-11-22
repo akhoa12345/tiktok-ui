@@ -91,7 +91,7 @@ function Search() {
                     {loading && (
                         <FontAwesomeIcon className="loading" icon={faCircleNotch} style={{ color: '#b6bdc8' }} />
                     )}
-                    <button className="search-btn" onMouseDown={(e) => e.preventDefault()}>
+                    <button className="search-btn" onMouseDown={e=>e.pre}>
                         <SearchIcon />
                     </button>
                 </div>

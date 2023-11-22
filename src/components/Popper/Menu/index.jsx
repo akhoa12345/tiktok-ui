@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 const defaultFn = () => {};
 
-function Menu({ items = [], onChange = defaultFn, hideOnClick=false, children }) {
+function Menu({ items = [], onChange = defaultFn, hideOnClick = false, children }) {
     const [history, setHistory] = useState([{ data: items }]);
     const current = history[history.length - 1];
 
@@ -51,7 +51,7 @@ function Menu({ items = [], onChange = defaultFn, hideOnClick=false, children })
                                 }}
                             />
                         )}
-                        {renderItems()}
+                        <div className="menu-body">{renderItems()}</div>
                     </PopperWrapper>
                 </div>
             }
@@ -70,6 +70,10 @@ const MenuStyle = styled(Tippy)`
 
         .menu-popper {
             padding-bottom: 8px;
+
+            .menu-body {
+                overflow-y: auto;
+            }
         }
     }
 `;

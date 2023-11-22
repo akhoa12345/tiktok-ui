@@ -8,7 +8,7 @@ function Header({ title, onBack }) {
             <button className="back-btn" onClick={onBack}>
                 <FontAwesomeIcon icon={faChevronLeft}/>
             </button>
-            <h4 className="header-titlt">{title}</h4>
+            <h4 className="header-title">{title}</h4>
         </HeaderStyle>
     );
 }
@@ -19,6 +19,7 @@ const HeaderStyle = styled.header`
     position: relative;
     height: 50px;
     margin-top: -8px;
+    flex-shrink: 0;
     h4 {
         margin: 0;
     }
@@ -30,10 +31,11 @@ const HeaderStyle = styled.header`
         cursor: pointer;
     }
 
-    .header-titlt {
+    .header-title {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        color: #333;
     }
 `;

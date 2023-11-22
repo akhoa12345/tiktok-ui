@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import Button from '../../Button';
 
 function MenuItem({ data, onClick }) {
-    console.log(data.separate);
     return (
         <MenuItemStyle leftIcon={data.icon} separate={data.separate} to={data.to} onClick={onClick}>
             {data.title}

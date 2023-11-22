@@ -7,6 +7,8 @@ function Wrapper({ className, children }) {
 export default Wrapper;
 
 const WrapperStyle = styled.div`
+    display: flex;
+    flex-direction: column;
     width: 100%;
     max-height: min(calc((100vh - 96px) - 60px), 734px);
     min-height: 100px;
