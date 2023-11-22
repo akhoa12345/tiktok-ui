@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function Button({
     to,
@@ -47,7 +48,7 @@ function Button({
             background-color: var(--white);
             border: 1px solid transparent;
             user-select: none;
-            
+
             & + & {
                 margin-left: 8px;
             }
@@ -87,6 +88,10 @@ function Button({
         </Comp>
     );
 }
+
+Button.propTypes = {
+    children: PropTypes.node.isRequired,
+};
 
 export default Button;
 

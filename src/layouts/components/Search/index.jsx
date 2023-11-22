@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import axios, { isCancel, AxiosError } from 'axios';
 import { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch, faCircleXmark } from '@fortawesome/free-solid-svg-icons';

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
@@ -5,14 +6,10 @@ import styled from 'styled-components';
 import Image from '../Image';
 import { Link } from 'react-router-dom';
 
-function AccountItem({data}) {
+function AccountItem({ data }) {
     return (
         <AccountItemStyle to={`/@${data.nickname}`}>
-            <Image
-                src={data.avatar}
-                alt={data.full_name}
-                className="avatar"
-            />
+            <Image src={data.avatar} alt={data.full_name} className="avatar" />
             <div className="info">
                 <h4 className="name">
                     <span>{data.nickname}</span>
@@ -23,6 +20,10 @@ function AccountItem({data}) {
         </AccountItemStyle>
     );
 }
+
+AccountItem.propTypes = {
+    data: PropTypes.object,
+};
 
 export default AccountItem;
 
