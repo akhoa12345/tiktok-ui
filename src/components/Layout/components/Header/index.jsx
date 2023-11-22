@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -19,6 +20,7 @@ import Menu from '../../../Popper/Menu';
 import { UploadIcon, MessageIcon, InboxIcon } from '../../../Icons';
 import Image from '../../../Image';
 import Search from '../Search';
+import routesConfig from '../../../../config/routes';
 
 const MENU_ITEMS = [
     {
@@ -92,9 +94,9 @@ function Header() {
     return (
         <HeaderStyle>
             <div className="inner">
-                <div className="logo">
+                <Link to={routesConfig.home} className="logo-link">
                     <img src={images.logo} alt="Tiktok" />
-                </div>
+                </Link>
 
                 {/* Search */}
                 <Search />
@@ -167,7 +169,8 @@ const HeaderStyle = styled.header`
         align-items: center;
         justify-content: space-between;
 
-        .logo {
+        .logo-link {
+            display: flex;
         }
 
         .action {
@@ -194,7 +197,7 @@ const HeaderStyle = styled.header`
                     font-size: 1.4rem;
                     font-weight: 600;
                     color: var(--white);
-                    font-family: 'ProximaNova', sans-serif;
+                    font-family: var(--font-family);
                     background-color: var(--primary);
                 }
             }

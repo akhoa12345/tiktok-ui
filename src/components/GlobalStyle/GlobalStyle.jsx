@@ -9,6 +9,7 @@ const GlobalStyle = createGlobalStyle`
     --black: #000;
     --white: #fff;
     --text-color: #333;
+    --font-family: 'ProximaNova', sans-serif;
 
     // Default layout 
     --default-layout-header-height: 60px;
@@ -25,7 +26,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    font-family: 'ProximaNova', sans-serif;
+    font-family: var(--font-family);
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;

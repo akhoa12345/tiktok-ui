@@ -49,6 +49,13 @@ function Search() {
         setShowResult(false);
     };
 
+    const handleChange = (e) => {
+        const searchValue = e.target.value;
+        if (!searchValue.startsWith(' ')) {
+            setSearchValue(searchValue);
+        }
+    };
+
     return (
         <SearchStyle>
             <HeadlessTippy
@@ -73,7 +80,7 @@ function Search() {
                         type="text"
                         placeholder="Search accounts and videos"
                         spellCheck={false}
-                        onChange={(e) => setSearchValue(e.target.value)}
+                        onChange={handleChange}
                         onFocus={() => setShowResult(true)}
                     />
                     {!!searchValue && !loading && (
@@ -84,7 +91,7 @@ function Search() {
                     {loading && (
                         <FontAwesomeIcon className="loading" icon={faCircleNotch} style={{ color: '#b6bdc8' }} />
                     )}
-                    <button className="search-btn">
+                    <button className="search-btn" onMouseDown={(e) => e.preventDefault()}>
                         <SearchIcon />
                     </button>
                 </div>
@@ -117,6 +124,7 @@ const SearchStyle = styled.div`
             font-size: 1.6rem;
             caret-color: var(--primary);
             background-color: transparent;
+            font-family: var(--font-family);
         }
 
         input:not(:placeholder-shown) ~ .search-btn {

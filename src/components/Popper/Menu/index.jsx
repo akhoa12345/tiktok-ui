@@ -8,7 +8,7 @@ import { useState } from 'react';
 
 const defaultFn = () => {};
 
-function Menu({ items = [], onChange = defaultFn, children }) {
+function Menu({ items = [], onChange = defaultFn, hideOnClick=false, children }) {
     const [history, setHistory] = useState([{ data: items }]);
     const current = history[history.length - 1];
 
@@ -36,6 +36,7 @@ function Menu({ items = [], onChange = defaultFn, children }) {
             interactive
             delay={[0, 700]}
             offset={[12, 8]}
+            hideOnClick={hideOnClick}
             placement="bottom-end"
             content={
                 <div className="menu-list">
