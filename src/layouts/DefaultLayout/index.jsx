@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components';
 
 import Header from '../components/Header';
-import Sidebar from './Sidebar';
+import Sidebar from '../components/Sidebar';
 
 const DefaultLayoutStyle = styled.div`
     display: flex;
@@ -11,6 +11,7 @@ const DefaultLayoutStyle = styled.div`
 
     .container {
         width: var(--default-layout-width);
+        max-width: 100%;
         padding: 0px var(--default-layout-horizontal-spacer);
         margin-top: var(--default-layout-header-height);
         display: flex;
