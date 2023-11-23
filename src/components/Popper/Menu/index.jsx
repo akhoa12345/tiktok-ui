@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Tippy from '@tippyjs/react';
 import styled from 'styled-components';
@@ -32,6 +32,16 @@ function Menu({ items = [], onChange = defaultFn, hideOnClick = false, children 
         });
     };
 
+    const handleBack = () => {
+        setHistory((prev) => {
+            return prev.slice(0, prev.length - 1);
+        });
+    }
+
+    const handleResetMenu = () => {
+        setHistory((prev) => prev.slice(0, 1));
+    };
+
     return (
         <MenuStyle
             interactive
@@ -45,18 +55,14 @@ function Menu({ items = [], onChange = defaultFn, hideOnClick = false, children 
                         {history.length > 1 && (
                             <Header
                                 title={current.title}
-                                onBack={() => {
-                                    setHistory((prev) => {
-                                        return prev.slice(0, prev.length - 1);
-                                    });
-                                }}
+                                onBack={handleBack}
                             />
                         )}
                         <div className="menu-body">{renderItems()}</div>
                     </PopperWrapper>
                 </div>
             }
-            onHidden={() => setHistory((prev) => prev.slice(0, 1))}
+            onHidden={handleResetMenu}
         >
             {children}
         </MenuStyle>
@@ -68,7 +74,7 @@ Menu.propTypes = {
     onChange: PropTypes.func,
     hideOnClick: PropTypes.bool,
     children: PropTypes.node.isRequired,
-}
+};
 
 export default Menu;
 

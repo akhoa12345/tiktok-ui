@@ -5,13 +5,13 @@ import Button from '../../Button';
 
 function MenuItem({ data, onClick }) {
     return (
-        <MenuItemStyle leftIcon={data.icon} separate={data.separate} to={data.to} onClick={onClick}>
+        <MenuItemStyle leftIcon={data.icon} $separate={data.separate} to={data.to} onClick={onClick}>
             {data.title}
         </MenuItemStyle>
     );
 }
 
-Button.propTypes = {
+MenuItem.propTypes = {
     data: PropTypes.object.isRequired,
     onClick: PropTypes.func,
 };
@@ -25,7 +25,7 @@ const MenuItemStyle = styled(Button)`
     padding: 11px 16px;
     line-height: 1.8rem;
 
-    border-top: ${(props) => (props.separate ? '1px solid rgba(22,24, 35, 0.12) !important' : 'none')};
+    border-top: ${(props) => (props.$separate ? '1px solid rgba(22,24, 35, 0.12) !important' : 'none')};
 
     &:hover {
         background-color: rgba(22, 24, 35, 0.03);

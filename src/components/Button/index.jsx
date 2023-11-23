@@ -35,36 +35,7 @@ function Button({
 
     if (to) {
         props.to = to;
-        Comp = styled(Link)`
-            display: inline-flex;
-            align-items: center;
-            justify-content: flex-start;
-            min-width: 100px;
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-size: 1.4rem;
-            font-weight: 700;
-            cursor: pointer;
-            background-color: var(--white);
-            border: 1px solid transparent;
-            user-select: none;
-
-            & + & {
-                margin-left: 8px;
-            }
-
-            .icon + .title,
-            .title + .icon {
-                color: black;
-                margin-left: 8px;
-            }
-
-            .icon {
-                width: 24px;
-                display: inline-block;
-                text-align: center;
-            }
-        `;
+        Comp = LinkStyle;
     } else if (href) {
         props.href = href;
         Comp = styled.a``;
@@ -73,12 +44,12 @@ function Button({
     return (
         <Comp
             className={className}
-            primary={primary}
-            outline={outline}
-            rounded={rounded}
-            small={small}
-            large={large}
-            text={text}
+            $primary={primary}
+            $outline={outline}
+            $rounded={rounded}
+            $small={small}
+            $large={large}
+            $text={text}
             disabled={disabled}
             {...props}
         >
@@ -108,6 +79,37 @@ Button.propTypes = {
 
 export default Button;
 
+const LinkStyle = styled(Link)`
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    min-width: 100px;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    cursor: pointer;
+    background-color: var(--white);
+    border: 1px solid transparent;
+    user-select: none;
+
+    & + & {
+        margin-left: 0px;
+    }
+
+    .icon + .title,
+    .title + .icon {
+        color: black;
+        margin-left: 8px;
+    }
+
+    .icon {
+        width: 24px;
+        display: inline-block;
+        text-align: center;
+    }
+`;
+
 const ButtonStyle = styled.button`
     display: inline-flex;
     align-items: center;
@@ -123,7 +125,7 @@ const ButtonStyle = styled.button`
     user-select: none;
 
     & + & {
-        /* margin-left: 8px; */
+        margin-left: 0px;
     }
 
     ${(props) =>
@@ -134,7 +136,7 @@ const ButtonStyle = styled.button`
         `}
 
     ${(props) =>
-        props.rounded &&
+        props.$rounded &&
         `
             border-radius: 999px;
             box-shadow: 0 2px 8px rgba(0 0 0 / 6%);
@@ -147,7 +149,7 @@ const ButtonStyle = styled.button`
         `}
 
     ${(props) =>
-        props.primary &&
+        props.$primary &&
         `
         color: var(--white);
         background-color: var(--primary);
@@ -160,7 +162,7 @@ const ButtonStyle = styled.button`
         `}
 
     ${(props) =>
-        props.outline &&
+        props.$outline &&
         `
             color: var(--primary);
             border-color: currentColor;
@@ -172,7 +174,7 @@ const ButtonStyle = styled.button`
         `}
 
     ${(props) =>
-        props.small &&
+        props.$small &&
         `
             min-width: 88px;
             padding: 4px 16px;
@@ -180,7 +182,7 @@ const ButtonStyle = styled.button`
         `}
 
     ${(props) =>
-        props.large &&
+        props.$large &&
         `
             min-width: 140px;
             padding: 14px 16px;
@@ -188,7 +190,7 @@ const ButtonStyle = styled.button`
         `}
 
     ${(props) =>
-        props.text &&
+        props.$text &&
         `
             &:hover {
                 text-decoration: underline;
