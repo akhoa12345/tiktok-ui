@@ -2,23 +2,41 @@ import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Tippy from '@tippyjs/react/headless';
+
+import { Wrapper as PopperWrapper } from '../Popper';
+import AccountPreview from './AccountPreview';
 
 function AccountItem() {
-    return (
-        <AccountItemStyle>
-            <img
-                className="avatar"
-                src="https://files.fullstack.edu.vn/f8-tiktok/users/5297/64240b5e177d2.jpg"
-                alt=""
-            />
-            <div className="item-info">
-                <p className="nickname">
-                    <strong>phunganhkhoa</strong>
-                    <FontAwesomeIcon className="check" icon={faCheckCircle} />
-                </p>
-                <p className="name">Phùng Anh Khoa</p>
+    const renderPreview = (props) => {
+        return (
+            <div className="preview" tabIndex="-1" {...props}>
+                <PopperWrapper>
+                    <AccountPreview />
+                </PopperWrapper>
             </div>
-        </AccountItemStyle>
+        );
+    };
+
+    return (
+        <div>
+            <Tippy interactive delay={[800, 0]} offset={[-20, 0]} placement="bottom" render={renderPreview}>
+                <AccountItemStyle>
+                    <img
+                        className="avatar"
+                        src="https://files.fullstack.edu.vn/f8-tiktok/users/5297/64240b5e177d2.jpg"
+                        alt=""
+                    />
+                    <div className="item-info">
+                        <p className="nickname">
+                            <strong>phunganhkhoa</strong>
+                            <FontAwesomeIcon className="check" icon={faCheckCircle} />
+                        </p>
+                        <p className="name">Phùng Anh Khoa</p>
+                    </div>
+                </AccountItemStyle>
+            </Tippy>
+        </div>
     );
 }
 
@@ -29,6 +47,7 @@ export default AccountItem;
 const AccountItemStyle = styled.div`
     display: flex;
     padding: 8px;
+    cursor: pointer;
 
     .avatar {
         width: 32px;
