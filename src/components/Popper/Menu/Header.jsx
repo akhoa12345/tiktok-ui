@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import styled from 'styled-components';
@@ -11,6 +12,11 @@ function Header({ title, onBack }) {
             <h4 className="header-title">{title}</h4>
         </HeaderStyle>
     );
+}
+
+Header.propTypes = {
+    title: PropTypes.string.isRequired,
+    onBack: PropTypes.func.isRequired,
 }
 
 export default Header;

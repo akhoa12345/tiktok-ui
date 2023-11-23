@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import Button from '../../Button';
@@ -9,6 +10,11 @@ function MenuItem({ data, onClick }) {
         </MenuItemStyle>
     );
 }
+
+Button.propTypes = {
+    data: PropTypes.object.isRequired,
+    onClick: PropTypes.func,
+};
 
 export default MenuItem;
 

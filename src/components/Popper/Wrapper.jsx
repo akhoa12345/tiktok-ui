@@ -1,8 +1,14 @@
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 function Wrapper({ className, children }) {
     return <WrapperStyle className={className}>{children}</WrapperStyle>;
 }
+
+Wrapper.propTypes = {
+    className: PropTypes.string,
+    children: PropTypes.node.isRequired,
+};
 
 export default Wrapper;
 

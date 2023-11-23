@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import styled from 'styled-components';
 
 import Header from '../components/Header';
@@ -30,6 +31,10 @@ function DefaultLayout({ children }) {
             </div>
         </DefaultLayoutStyle>
     );
+}
+
+DefaultLayout.propTypes = {
+    children: PropTypes.node.isRequired,
 }
 
 export default DefaultLayout;
